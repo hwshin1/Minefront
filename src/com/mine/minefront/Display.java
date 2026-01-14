@@ -1,17 +1,27 @@
-// 디스플레이
 package com.mine.minefront;
+
+import com.mine.minefront.graphics.Render;
 
 import javax.swing.JFrame;
 import java.awt.Canvas;
 
+// 디스플레이
 public class Display extends Canvas implements Runnable {
+    // 버전 ID
+    private static final long serialVersionUID = 1L;
+
     static final int WIDTH = 1280;
     static final int HEIGHT = 720;
     static final String TITLE = "Minefront 개발 초기 버전";
 
-    // 스레드 객체
-    private Thread thread;
+    private Thread thread; // 스레드 객체
     private boolean running = false;
+    private Render render;
+
+    // Render 픽셀 설정
+    public Display() {
+        render = new Render(WIDTH, HEIGHT);
+    }
 
     // 스레드 초기화
     private void start() {
@@ -39,9 +49,16 @@ public class Display extends Canvas implements Runnable {
 
     public void run() {
         while (running) {
-
+            tick();
+            render();
         }
     }
+
+    // 초당 프레임 처리
+    private void tick() {}
+
+    // 렌더링
+    private void render() {}
 
     public static void main(String[] args) {
         Display game = new Display();
