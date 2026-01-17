@@ -22,6 +22,7 @@ public class Render {
                 int xPix = x + xOffset;
 
                 pixels[xPix + yPix * width] = render.pixels[x + y * render.width];
+                System.out.println("x: " + x + " y: " + y);
             }
         }
     }

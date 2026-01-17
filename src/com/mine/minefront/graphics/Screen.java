@@ -22,6 +22,9 @@ public class Screen extends Render {
     }
 
     public void render() {
-        draw(test, 0 ,0 );
+        // 애니메이션 생성
+        int anim = (int) (Math.sin(System.currentTimeMillis() % 1000.0 / 1000 * Math.PI * 2) * 100);
+        // 픽셀을 화면 중간으로 + 애니메이션 보여주기
+        draw(test, (width - SCREEN_WIDTH) / 2 + anim, (height - SCREEN_HEIGHT) / 2);
     }
 }
