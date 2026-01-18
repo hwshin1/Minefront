@@ -31,7 +31,11 @@ public class Render {
                     continue;
                 }
 
-                pixels[xPix + yPix * width] = render.pixels[x + y * render.width];
+                int alpha = render.pixels[x + y * render.width];
+                // 렌더링 하고 싶지 않은 부분 렌더링 안하게 하기
+                if (alpha > 0) {
+                    pixels[xPix + yPix * width] = alpha;
+                }
             }
         }
     }
