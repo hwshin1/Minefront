@@ -58,9 +58,39 @@ public class Display extends Canvas implements Runnable {
     }
 
     public void run() {
+        // FPS Count
+        int frames = 0; // 프레임
+        int tickCount = 0; // 카운트
+        double unprocessedSecond = 0;
+        double secondsPerTick = 1 / 60.0; // 틱값
+        long previousTime = System.nanoTime(); // 이전시간
+        boolean ticked = false;
+
         while (running) {
-            tick();
+            long currentTime = System.nanoTime(); // 현재시간
+            long passedTime = currentTime - previousTime; // 통과시간
+            previousTime = currentTime;
+            unprocessedSecond += passedTime / 1000000000.0;
+
+            while (unprocessedSecond > secondsPerTick) {
+                tick();
+                unprocessedSecond -= secondsPerTick;
+                ticked = true;
+                tickCount++;
+
+                if (tickCount % 60 == 0) {
+                    System.out.println(frames + "fps");
+                    previousTime += 1000;
+                    frames = 0;
+                }
+            }
+
+            if (ticked) {
+                render();
+                frames++;
+            }
             render();
+            frames++;
         }
     }
 
