@@ -17,12 +17,21 @@ public class Render {
         for (int y = 0; y < render.height; y++) {
             int yPix = y + yOffset;
 
+            // 범위 넘어가지 않게
+            if (yPix < 0 || yPix >= height) {
+                continue;
+            }
+
             // x값 픽셀 채우기
             for (int x = 0; x < render.width; x++) {
                 int xPix = x + xOffset;
 
+                // 범위 넘어가지 않게
+                if (xPix < 0 || xPix >= width) {
+                    continue;
+                }
+
                 pixels[xPix + yPix * width] = render.pixels[x + y * render.width];
-                System.out.println("x: " + x + " y: " + y);
             }
         }
     }
