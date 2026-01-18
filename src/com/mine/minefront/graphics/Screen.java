@@ -1,5 +1,7 @@
 package com.mine.minefront.graphics;
 
+import com.mine.minefront.Game;
+
 import java.util.Random;
 
 public class Screen extends Render {
@@ -21,7 +23,7 @@ public class Screen extends Render {
         }
     }
 
-    public void render() {
+    public void render(Game game) {
         // 프레임마다 픽셀값 0
         for (int i = 0; i < width * height; i++) {
             pixels[i] = 0;
@@ -36,9 +38,12 @@ public class Screen extends Render {
          */
         for (int i = 0; i < 50; i++) {
             // 애니메이션 생성
-            int animX = (int) (Math.sin((System.currentTimeMillis() + i * 8) % 2000.0 / 2000 * Math.PI * 2) * 80);
-            int animY = (int) (Math.cos((System.currentTimeMillis() + i * 8) % 2000.0 / 2000 * Math.PI * 2) * 60);
+//            int animX = (int) (Math.sin((System.currentTimeMillis() + i * 8) % 2000.0 / 2000 * Math.PI * 2) * 80);
+//            int animY = (int) (Math.cos((System.currentTimeMillis() + i * 8) % 2000.0 / 2000 * Math.PI * 2) * 60);
 
+            // game class 방식
+            int animX = (int) (Math.sin(game.time + i) % 1000);
+            int animY = (int) (Math.cos(game.time + i) * 100);
             // 픽셀을 화면 중간으로 + 애니메이션 보여주기
             draw(test, (width - SCREEN_WIDTH) / 2 + animX, (height - SCREEN_HEIGHT) / 2 - animY);
         }

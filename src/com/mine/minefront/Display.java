@@ -22,6 +22,7 @@ public class Display extends Canvas implements Runnable {
     private boolean running = false;
     private Render render;
     private Screen screen;
+    private Game game;
     private BufferedImage img;
     private int[] pixels; // 별도의 픽셀 배열변수
 
@@ -31,6 +32,7 @@ public class Display extends Canvas implements Runnable {
         screen = new Screen(WIDTH, HEIGHT);
         img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+        game = new Game();
     }
 
     // 스레드 초기화
@@ -109,7 +111,7 @@ public class Display extends Canvas implements Runnable {
             return;
         }
 
-        screen.render();
+        screen.render(game);
 
         for (int i = 0; i < WIDTH * HEIGHT; i++) {
             pixels[i] = screen.pixels[i];
