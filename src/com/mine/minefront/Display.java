@@ -30,9 +30,9 @@ public class Display extends Canvas implements Runnable {
         // render = new Render(WIDTH, HEIGHT);
         // render 없애고 screen 으로 변경
         screen = new Screen(WIDTH, HEIGHT);
+        game = new Game();
         img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
-        game = new Game();
     }
 
     // 스레드 초기화
@@ -97,7 +97,9 @@ public class Display extends Canvas implements Runnable {
     }
 
     // 초당 프레임 처리
-    private void tick() {}
+    private void tick() {
+        game.tick();
+    }
 
     // 렌더링
     private void render() {
