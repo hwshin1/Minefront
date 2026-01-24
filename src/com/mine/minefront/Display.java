@@ -1,6 +1,5 @@
 package com.mine.minefront;
 
-import com.mine.minefront.graphics.Render;
 import com.mine.minefront.graphics.Screen;
 
 import javax.swing.JFrame;
@@ -20,7 +19,6 @@ public class Display extends Canvas implements Runnable {
 
     private Thread thread; // 스레드 객체
     private boolean running = false;
-    private Render render;
     private Screen screen;
     private Game game;
     private BufferedImage img;
