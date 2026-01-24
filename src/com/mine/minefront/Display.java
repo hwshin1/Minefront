@@ -33,6 +33,12 @@ public class Display extends Canvas implements Runnable {
         game = new Game();
         img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         pixels = ((DataBufferInt)img.getRaster().getDataBuffer()).getData();
+
+        // 새로운 차원 만들기
+        Dimension size = new Dimension(WIDTH, HEIGHT);
+        setPreferredSize(size);
+        setMinimumSize(size);
+        setMaximumSize(size);
     }
 
     // 스레드 초기화
@@ -131,9 +137,9 @@ public class Display extends Canvas implements Runnable {
         frame.add(game);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // x 버튼 누르면 자동으로 종료
-        frame.setSize(WIDTH, HEIGHT);
+//        frame.setSize(WIDTH, HEIGHT); 새로운 차원 만들었으면 지워도 됨
         frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        frame.setResizable(false); // 화면 크기 조절 유무
         frame.setVisible(true);
 
         System.out.println("실행중...");
