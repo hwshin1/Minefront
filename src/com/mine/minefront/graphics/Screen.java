@@ -7,6 +7,8 @@ import java.util.Random;
 public class Screen extends Render {
 
     private Render test;
+    private Render3D render3D;
+
     private static final int SCREEN_WIDTH = 320;
     private static final int SCREEN_HEIGHT = 180;
 
@@ -15,6 +17,7 @@ public class Screen extends Render {
 
         // Random 함수
         Random random = new Random();
+        render3D = new Render3D(width, height);
 
         // 너비,높이 = 320, 180
         test = new Render(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -45,7 +48,10 @@ public class Screen extends Render {
             int animX = (int) (Math.sin((game.time + i * 2) % 1000.0 / 100) * 100);
             int animY = (int) (Math.cos((game.time + i * 2) % 1000.0 / 100) * 100);
             // 픽셀을 화면 중간으로 + 애니메이션 보여주기
-            draw(test, (width - SCREEN_WIDTH) / 2 + animX, (height - SCREEN_HEIGHT) / 2 - animY);
+//            draw(test, (width - SCREEN_WIDTH) / 2 + animX, (height - SCREEN_HEIGHT) / 2 - animY);
         }
+
+        render3D.floor();
+        draw(render3D, 0, 0);
     }
 }
