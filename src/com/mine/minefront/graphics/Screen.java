@@ -42,8 +42,8 @@ public class Screen extends Render {
 //            int animY = (int) (Math.cos((System.currentTimeMillis() + i * 8) % 2000.0 / 2000 * Math.PI * 2) * 60);
 
             // game class 방식
-            int animX = (int) (Math.sin(game.time + i) % 1000);
-            int animY = (int) (Math.cos(game.time + i) * 1000);
+            int animX = (int) (Math.sin((game.time + i * 2) % 1000.0 / 100) * 100);
+            int animY = (int) (Math.cos((game.time + i * 2) % 1000.0 / 100) * 100);
             // 픽셀을 화면 중간으로 + 애니메이션 보여주기
             draw(test, (width - SCREEN_WIDTH) / 2 + animX, (height - SCREEN_HEIGHT) / 2 - animY);
         }
