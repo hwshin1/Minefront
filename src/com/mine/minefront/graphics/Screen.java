@@ -51,7 +51,7 @@ public class Screen extends Render {
 //            draw(test, (width - SCREEN_WIDTH) / 2 + animX, (height - SCREEN_HEIGHT) / 2 - animY);
         }
 
-        render3D.floor();
+        render3D.floor(game);
         draw(render3D, 0, 0);
     }
 }
