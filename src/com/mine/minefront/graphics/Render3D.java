@@ -27,8 +27,8 @@ public class Render3D extends Render{
 
                 // 비트 연산자로 설정
                 // time으로 애니메이션 처럼 보이게
-                double xx = depth; // time 추가시 행 이동
-                double yy = z + game.time; // time 추가시 열 이동
+                double xx = depth + game.time; // time 추가시 좌우 이동
+                double yy = z + game.time; // time 추가시 앞뒤 이동
 
                 // xx,yy를 double 타입으로 저장하고 싶어서 만든 변수들
                 int xPix = (int) (xx);
