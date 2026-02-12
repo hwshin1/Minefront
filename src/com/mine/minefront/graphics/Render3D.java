@@ -10,6 +10,11 @@ public class Render3D extends Render{
 
     // 이미지 생성 및 층 랜더링
     public void floor(Game game) {
+
+        double rotation = game.time / 100.0; // 회전 속도 조절
+        double cosine = Math.cos(rotation); // 코싸인 값
+        double sine = Math.sin(rotation); // 싸인 값
+
         // y축 높이를 위한 전체 루프
         for (int y = 0; y < height; y++){
             double ceiling = (y - height / 2.0) / height;
@@ -27,8 +32,14 @@ public class Render3D extends Render{
 
                 // 비트 연산자로 설정
                 // time으로 애니메이션 처럼 보이게
-                double xx = depth + game.time; // time 추가시 좌우 이동
-                double yy = z + game.time; // time 추가시 앞뒤 이동
+
+                // 360도 회전
+                double xx = depth * cosine + z * sine;
+                double yy = z * cosine - depth * sine;
+
+                // 180도 회전 후 다시 되돌아옴
+//                double xx = depth * cosine + z;
+//                double yy = z * cosine - depth;
 
                 // xx,yy를 double 타입으로 저장하고 싶어서 만든 변수들
                 int xPix = (int) (xx);
